@@ -30,5 +30,5 @@ keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste text" })
 keymap.set({ "n", "v" }, "<leader>w", ":w<CR>", { desc = "Save file" })
 
 -- selection
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move up" })
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move down" })
+keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move up" })
+keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move down" })

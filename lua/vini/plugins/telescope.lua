@@ -24,7 +24,7 @@ return {
     })
     -- set keymaps
     local keymap = vim.keymap -- for conciseness
-    
+
     keymap.set("n", "<leader>fgs", "<cmd>Telescope git_status<cr>", { desc = "Find git unstashed files" })
     keymap.set("n", "<leader>fgc", "<cmd>Telescope git_commits<cr>", { desc = "Find git commits" })
     keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
