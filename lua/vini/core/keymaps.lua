@@ -32,3 +32,7 @@ keymap.set({ "n", "v" }, "<leader>w", ":w<CR>", { desc = "Save file" })
 -- selection
 keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move up" })
 keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move down" })
+
+-- treesiter
+
+keymap.set("n", "<leader>cti", ":InspectTree<CR>", { desc = "InspectTree" })
