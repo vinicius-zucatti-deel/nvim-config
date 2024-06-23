@@ -6,6 +6,8 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap -- for conciseness
 
+keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
+
 -- Increment/decrement numbers
 keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })
 keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
@@ -32,6 +34,7 @@ keymap.set({ "n", "v" }, "<leader>w", ":w<CR>", { desc = "Save file" })
 -- selection
 keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move up" })
 keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move down" })
+keymap.set({ "n", "v" }, "<leader>a", "gg0<C-v>G$", { desc = "Select all" })
 
 -- treesiter
 
