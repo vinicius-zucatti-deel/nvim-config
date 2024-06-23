@@ -20,8 +20,6 @@ local chat = function(opts)
     json_prompt,
   }
 
-  print(vim.inspect(args))
-
   local on_finish = function(result)
     vim.schedule(function()
       local data = vim.fn.json_decode(table.concat(result, ""))
@@ -30,9 +28,9 @@ local chat = function(opts)
         chat_context = data.context
       end
 
-      local chat_response = vim.inspect(data.response)
-      vim.cmd("tabnew")
-      vim.api.nvim_put({ chat_response }, "b", true, true)
+      local chat_response = data.response:gsub("%. ", ".\n"):gsub("\n", "\n\n")
+      vim.api.nvim_put(vim.split(chat_response, "\n"), "b", true, true)
+      vim.api.nvim_command("normal! o")
     end)
   end
 
@@ -50,6 +48,6 @@ end
 
 local create_command = vim.api.nvim_create_user_command
 
-create_command("AIChat", function(opts)
+create_command("Ollama", function(opts)
   chat(opts)
-end, { nargs = 1, desc = "Chat with AI" })
+end, { nargs = 1, desc = "Chat with Ollama" })
