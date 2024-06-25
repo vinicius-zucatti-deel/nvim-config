@@ -58,9 +58,8 @@ keymap.set("n", "<leader>cti", ":InspectTree<CR>", { desc = "InspectTree" })
 -- Clear search highlights easily
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
--- Efficient buffer navigation
-keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Go to next buffer" })
-keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Go to previous buffer" })
-
 -- Deleting text in visual mode without copying to clipboard
 keymap.set("x", "d", '"_d', { desc = "Delete without copying" })
+
+-- Close buffer
+keymap.set("n", "<leader>q", "<cmd>close<CR>", { desc = "Close" })
