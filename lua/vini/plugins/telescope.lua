@@ -30,12 +30,17 @@ return {
     -- set keymaps
     local keymap = vim.keymap -- for conciseness
 
-    keymap.set("n", "<leader>fgs", "<cmd>Telescope git_status<cr>", { desc = "Find git unstashed files" })
-    keymap.set("n", "<leader>fgc", "<cmd>Telescope git_commits<cr>", { desc = "Find git commits" })
-    keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
-    keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
-    keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
-    keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
-    keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
+    keymap.set("n", "<leader>p", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
+    keymap.set("n", "<leader>P", "<cmd>Telescope buffers<cr>", { desc = "Fuzzy find buffers files" })
+
+    keymap.set("n", "<leader>f", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
+
+    keymap.set("n", "<leader>Fgs", "<cmd>Telescope git_status<cr>", { desc = "Find git unstashed files" })
+    keymap.set("n", "<leader>Fgc", "<cmd>Telescope git_commits<cr>", { desc = "Find git commits" })
+    keymap.set("n", "<leader>Ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
+    keymap.set("n", "<leader>Fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
+    keymap.set("n", "<leader>Fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
+    keymap.set("n", "<leader>Fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
+    keymap.set("n", "<leader>Ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
   end,
 }
