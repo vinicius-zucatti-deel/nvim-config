@@ -3,7 +3,7 @@
 ## replace all string globaly
 
 ```
-:args src/**/*.astro
+:args src/**/*.ts
 :args
-:argdo %s/hidden/off/gc | update
+:argdo %s/old/new/gc | update
 ```
