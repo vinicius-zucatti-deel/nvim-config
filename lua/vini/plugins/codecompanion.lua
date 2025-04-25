@@ -8,16 +8,16 @@ return {
   opts = {
     log_level = "DEBUG",
     strategies = {
-      chat = { adapter = "llama3" },
-      inline = { adapter = "llama3" },
+      chat = { adapter = "openai" },
+      inline = { adapter = "openai" },
     },
     adapters = {
-      llama3 = function()
+      ollama = function()
         return require("codecompanion.adapters").extend("ollama", {
-          name = "llama3",
+          name = "granite-code:3b",
           schema = {
             model = {
-              default = "llama3",
+              default = "granite-code:3b",
             },
           },
           env = {
@@ -25,6 +25,13 @@ return {
           },
           parameters = {
             sync = true,
+          },
+        })
+      end,
+      openai = function()
+        return require("codecompanion.adapters").extend("openai", {
+          env = {
+            api_key = vim.fn.getenv("OPENAI_API_KEY"),
           },
         })
       end,
