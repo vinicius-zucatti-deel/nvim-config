@@ -10,7 +10,7 @@ return {
 
     nvimtree.setup({
       update_focused_file = {
-        enable = true,
+        enable = false,
       },
       view = {
         width = 35,
@@ -36,7 +36,7 @@ return {
       actions = {
         open_file = {
           window_picker = {
-            enable = false,
+            enable = true,
           },
         },
       },
