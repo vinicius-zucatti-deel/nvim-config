@@ -71,3 +71,5 @@ keymap.set("n", "<leader>Qa", ":qa<CR>", { desc = "Quit all" })
 
 -- Moving
 keymap.set("n", "<C-p>", "<C-^>", { desc = "Go to previous file" })
+keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Jump up and center" })
+keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Jump down and center" })

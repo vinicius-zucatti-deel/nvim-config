@@ -14,10 +14,10 @@ return {
     adapters = {
       ollama = function()
         return require("codecompanion.adapters").extend("ollama", {
-          name = "granite-code:3b",
+          name = "codellama:7b-code",
           schema = {
             model = {
-              default = "granite-code:3b",
+              default = "codellama:7b-code",
             },
           },
           env = {
