@@ -43,5 +43,7 @@ return {
     keymap.set("n", "<leader>Fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
     keymap.set("n", "<leader>Fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
     keymap.set("n", "<leader>Ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
+    keymap.set("n", "<leader>Fy", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "Find symbols" })
+    keymap.set("n", "<leader>Fm", "<cmd>Telescope marks<cr>", { desc = "Find marks" })
   end,
 }
