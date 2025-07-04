@@ -81,3 +81,6 @@ keymap.del("n", "gra")
 keymap.del("n", "grr")
 keymap.del("n", "gri")
 keymap.del("n", "gO")
+
+-- Buffer hover
+keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover" })
