@@ -76,7 +76,25 @@ return {
 
     -- used to enable autocompletion (assign to every lsp server config)
     local capabilities = cmp_nvim_lsp.default_capabilities()
-
+    lspconfig.vtsls.setup({
+     capabilities = capabilities,
+      root_dir = require("lspconfig.util").root_pattern("tsconfig.json", "package.json", ".git"),
+      settings = {
+        typescript = {
+          tsserver = {
+            maxTsServerMemory = 8192,
+          },
+        },
+        vtsls = {
+          enableMoveToFileCodeAction = true,
+          experimental = {
+            completion = {
+              enableServerSideFuzzyMatch = true,
+            },
+          },
+        },
+      },
+    })
     -- Change the Diagnostic symbols in the sign column (gutter)
     -- (not in youtube nvim video)
     local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
