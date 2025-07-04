@@ -51,5 +51,4 @@ vim.api.nvim_create_autocmd("CursorHold", {
    end,
    desc = "Auto-hover LSP docs on cursor hold",
 })
--- Buffer hover
-keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover" })
+
