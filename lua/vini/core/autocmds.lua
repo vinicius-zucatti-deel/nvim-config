@@ -45,10 +45,3 @@ create_command("SaveWithoutFormat", ":noautocmd w", { nargs = 0, desc = "Save fi
 
 create_command("MyHelp", ":vsplit ~/.config/nvim/lua/vini/help.md", { nargs = 0, desc = "Open my custom help" })
 
-vim.api.nvim_create_autocmd("CursorHold", {
-  callback = function()
-     vim.lsp.buf.hover()
-   end,
-   desc = "Auto-hover LSP docs on cursor hold",
-})
-
