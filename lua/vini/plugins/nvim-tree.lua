@@ -10,7 +10,9 @@ return {
 
     nvimtree.setup({
       update_focused_file = {
-        enable = false,
+        enable = true,
+        update_root = true, -- optional: changes root to the buffer's directory
+        ignore_list = {}, -- optional: list of filetypes to ignore
       },
       view = {
         width = 35,

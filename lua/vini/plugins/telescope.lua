@@ -45,5 +45,6 @@ return {
     keymap.set("n", "<leader>Ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
     keymap.set("n", "<leader>Fy", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "Find symbols" })
     keymap.set("n", "<leader>Fm", "<cmd>Telescope marks<cr>", { desc = "Find marks" })
+    keymap.set("n", "<leader>Fd", "<cmd>Telescope diagnostics<cr>", { desc = "Find diagnostics" })
   end,
 }
