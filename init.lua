@@ -1,3 +1,10 @@
 require("vini.core")
 require("vini.lazy")
 -- require("vini.localhost")
+
+-- vim.cmd.colorscheme("dracula")
+vim.cmd.colorscheme("tokyonight")
+-- vim.cmd.colorscheme("tokyonight-night")
+-- vim.cmd.colorscheme("catppuccin")
+-- vim.cmd.colorscheme("catppuccin-mocha")
+-- vim.cmd.colorscheme("material-deep-ocean")

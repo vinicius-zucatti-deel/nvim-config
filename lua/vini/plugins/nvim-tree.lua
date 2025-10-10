@@ -10,10 +10,12 @@ return {
 
     nvimtree.setup({
       update_focused_file = {
-        enable = false,
+        enable = true,
+        update_root = true, -- optional: changes root to the buffer's directory
+        ignore_list = {}, -- optional: list of filetypes to ignore
       },
       view = {
-        width = 35,
+        width = 75,
         relativenumber = true,
       },
       -- change folder arrow icons
@@ -35,6 +37,7 @@ return {
       -- window splits
       actions = {
         open_file = {
+          quit_on_open = true,
           window_picker = {
             enable = true,
           },
@@ -58,7 +61,11 @@ return {
     -- set keymaps
     local keymap = vim.keymap -- for conciseness
 
-    keymap.set("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
+    keymap.set("n", "<leader>e", function()
+      vim.cmd("NvimTreeFindFileToggle")
+      -- wait a bit to ensure the window opens before resizing
+      vim.cmd("normal! zz")
+    end, { desc = "Toggle file explorer" })
     -- keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
     -- keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" }) -- toggle file explorer on current file
     keymap.set("n", "<leader>Ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" }) -- collapse file explorer

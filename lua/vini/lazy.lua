@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({ { import = "vini.plugins" }, { import = "vini.plugins.lsp" } }, {
+require("lazy").setup({ { import = "vini.plugins" }, { import = "vini.plugins.lsp" }, { import = "vini.themes" } }, {
   checker = {
     enabled = true,
     notify = false,

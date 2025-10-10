@@ -1,5 +1,9 @@
 # My own help file
 
+## replace string on a file
+
+:%s/foo//g
+
 ## replace all string globaly
 
 ```
