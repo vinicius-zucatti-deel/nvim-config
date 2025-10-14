@@ -77,7 +77,7 @@ return {
     -- used to enable autocompletion (assign to every lsp server config)
     local capabilities = cmp_nvim_lsp.default_capabilities()
     lspconfig.vtsls.setup({
-     capabilities = capabilities,
+      capabilities = capabilities,
       root_dir = require("lspconfig.util").root_pattern("tsconfig.json", "package.json", ".git"),
       settings = {
         typescript = {
@@ -95,6 +95,73 @@ return {
         },
       },
     })
+
+    local function eslint_root_dir(fname)
+      -- 1) Standard flat config or classic .eslintrc in any ancestor
+      local root = util.root_pattern(
+        "eslint.config.js",
+        "eslint.config.cjs",
+        "eslint.config.mjs",
+        "eslint.config.ts",
+        ".eslintrc",
+        ".eslintrc.js",
+        ".eslintrc.cjs",
+        ".eslintrc.json",
+        ".eslintrc.yaml",
+        ".eslintrc.yml"
+      )(fname)
+      if root then
+        return root
+      end
+
+      -- 2) app/eslint.config.* living under a higher project root
+      local app_root = util.search_ancestors(fname, function(path)
+        local app = util.path.join(path, "app")
+        local candidates = {
+          "eslint.config.js",
+          "eslint.config.cjs",
+          "eslint.config.mjs",
+          "eslint.config.ts",
+        }
+        for _, f in ipairs(candidates) do
+          if util.path.is_file(util.path.join(app, f)) then
+            return app
+          end
+        end
+      end)
+      if app_root then
+        return app_root
+      end
+
+      -- 3) Fallback to package.json/.git
+      return util.root_pattern("package.json", ".git")(fname)
+    end
+
+    lspconfig.eslint.setup({
+      capabilities = capabilities,
+      root_dir = eslint_root_dir,
+      settings = {
+        -- Show/fix issues while typing and on save
+        run = "onType",
+        format = true,
+        codeAction = {
+          disableRuleComment = { enable = true, location = "separateLine" },
+          showDocumentation = { enable = true },
+        },
+        codeActionOnSave = { enable = true, mode = "all" }, -- enables EslintFixAll
+        workingDirectory = { mode = "auto" }, -- respects eslint's cwd logic
+        experimental = { useFlatConfig = true }, -- safe even if using legacy; ignored there
+        validate = "on",
+      },
+      on_attach = function(client, bufnr)
+        -- Optional: ensure fixes run before write
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          buffer = bufnr,
+          command = "EslintFixAll",
+        })
+      end,
+    })
+
     -- Change the Diagnostic symbols in the sign column (gutter)
     -- (not in youtube nvim video)
     local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }

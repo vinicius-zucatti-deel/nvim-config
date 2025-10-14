@@ -49,3 +49,8 @@ vim.diagnostic.config({
   --  current_line = true,
   -- },
 })
+
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+  command = "checktime",
+})
