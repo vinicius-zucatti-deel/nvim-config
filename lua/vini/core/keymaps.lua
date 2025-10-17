@@ -156,3 +156,5 @@ end, { desc = "whichkey query lookup" })
 --
 -- -- Show diagnostics list
 -- keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+
+keymap.set("n", "<leader>fx", "<cmd>Telescope command_history<CR>", { desc = "telescope command history" })

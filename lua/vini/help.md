@@ -49,3 +49,10 @@ remove <b>HTML t*ags</b> dst remove HTML tags
 <b>or tag* types</b> csth1<CR> <h1>or tag types</h1>
 delete(functi*on calls) dsf function calls
 ```
+
+## delete all marks
+
+```
+:delmarks! | delmarks A-Z0-9
+
+```

@@ -27,6 +27,8 @@ return {
         keymap.set("n", "gr", lsp.buf.references, bufopts)
         keymap.set("n", "gd", lsp.buf.definition, bufopts)
 
+        keymap.set("n", "gy", lsp.buf.type_definition, { desc = "Go to Type Definition" })
+
         opts.desc = "See available code actions"
         keymap.set({ "n", "v" }, "<leader>ca", lsp.buf.code_action, opts)
 
@@ -56,13 +58,32 @@ return {
     -- completion capabilities
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-    -- Define server configurations (new API)
+    -- Base memory limit for Node-based LSPs
+    local NODE_MAX_MEM = "16384" -- 16 GB
+
+    -- Common Node-based servers to patch
+    local node_servers = { "vtsls", "tsserver", "eslint", "pyright", "tailwindcss" }
+
+    for _, server in ipairs(node_servers) do
+      if vim.fn.exepath(server) ~= "" then
+        vim.lsp.config(server, {
+          capabilities = capabilities,
+          cmd = {
+            "node",
+            "--max-old-space-size=" .. NODE_MAX_MEM,
+            vim.fn.exepath(server),
+            "--stdio",
+          },
+        })
+      end
+    end
+
+    -- vtsls configuration (TypeScript)
     vim.lsp.config("vtsls", {
       capabilities = capabilities,
-      -- prefer root_markers with the new API
       root_markers = { "tsconfig.json", "package.json", ".git" },
       settings = {
-        typescript = { tsserver = { maxTsServerMemory = 8192 } },
+        typescript = { tsserver = { maxTsServerMemory = tonumber(NODE_MAX_MEM) } },
         vtsls = {
           enableMoveToFileCodeAction = true,
           experimental = { completion = { enableServerSideFuzzyMatch = true } },
@@ -70,7 +91,7 @@ return {
       },
     })
 
-    -- Enable servers
+    -- enable servers
     vim.lsp.enable("vtsls")
     -- vim.lsp.enable({ "lua_ls", "astro", "graphql" })
 
